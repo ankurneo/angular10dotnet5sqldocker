@@ -1,0 +1,18 @@
+--- 
+services: 
+  corewebapi: 
+    build: "."
+    depends_on: 
+      - db
+    environment: 
+      DBServer: db
+    ports: 
+      - "8080:80"
+  db: 
+    environment: 
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ergo.1234
+    image: "neodockerdemo/neo-repo01:sqlwebapidemo"
+    ports: 
+      - "1433:1433"
+version: "3"

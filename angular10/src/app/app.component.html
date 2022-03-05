@@ -1,0 +1,15 @@
+<h1>Display Countries Details</h1>
+<table align="center" border="1px solid">
+  <tr>
+    <th>Name</th>
+    <th>Area</th>
+    <th>Continent</th>
+    <th>Leader</th>
+  </tr>
+  <tr *ngFor="let item of data">
+    <td>{{item.name}}</td>
+    <td>{{item.area}}</td>
+    <td>{{item.continent}}</td>
+    <td>{{item.leader}}</td>
+  </tr>
+</table>

@@ -1,0 +1,35 @@
+--- 
+services: 
+  corewebapi: 
+    build: CoreWebApi/.
+    depends_on: 
+      - db
+    environment: 
+      DBServer: db
+    image: neodockerdemo/neo-repo01:docker-demo-corewebapi
+    ports: 
+      - "8080:80"
+  db: 
+    environment: 
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: ergo.1234
+    image: "neodockerdemo/neo-repo01:sqlwebapidemolst"
+    ports: 
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql/data
+      - sqllog:/var/opt/mssql/log  
+  ui: 
+    build: angular10/.
+    depends_on: 
+      - corewebapi
+      - db
+    environment: 
+      NODE_ENV: production
+    image: neodockerdemo/neo-repo01:docker-demo-ui
+    ports: 
+      - "4200:80"
+volumes:
+  sqldata:
+  sqllog: 
+version: "3"
